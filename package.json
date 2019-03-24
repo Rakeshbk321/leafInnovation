@@ -1,0 +1,17 @@
+{
+  "name": "leaf-innovation-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rakesh <rkurkundikar@gmail.com> (https://github.com/Rakeshbk321)",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.2",
+    "bcrypt": "^3.0.5",
+    "mongodb": "^3.2.1",
+    "mongoose": "^5.4.19"
+  }
+}

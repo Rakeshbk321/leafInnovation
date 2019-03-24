@@ -1,0 +1,481 @@
+
+service: leaf-innovation-task
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: "${opt:stage}"
+  region: ap-southeast-1
+  environment: 
+    ${file(serverless_env.yml):${self:custom.stage}}
+
+functions:
+  createProduct:
+    handler: productHandler.product
+    memorySize: 128
+    description: create new product in a site
+    events:
+     - http:
+        path: product/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: product/update/{sku}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: product/read/{sku}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: product/delete/{sku}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  createUser:
+    handler: userHandler.user
+    memorySize: 128
+    description: create new user in a site
+    events:
+     - http:
+        path: user/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda        
+     - http:
+        path: user/update/{userName}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: user/read/{userName}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: user/delete/{userName}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  createRegion:
+    handler: regionHandler.region
+    memorySize: 128
+    description: create new region in a site
+    events:
+     - http:
+        path: region/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: region/update/{name}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: region/read/{name}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: region/delete/{name}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda  
+  createRegionAreaMapping:
+    handler: regionAreaMappingHandler.regionAreaMapping
+    memorySize: 128
+    description: create new RegionAreaMapping in a site
+    events:
+     - http:
+        path: regionAreaMapping/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: regionAreaMapping/update/{name}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: regionAreaMapping/read/{name}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: regionAreaMapping/delete/{name}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  createDeliveryAgent:
+    handler: deliveryAgentHandler.deliveryAgent
+    memorySize: 128
+    description: create new deliveryAgent in a site
+    events:
+     - http:
+        path: deliveryAgent/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: deliveryAgent/update/{agentCode}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: deliveryAgent/read/{agentCode}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: deliveryAgent/delete/{agentCode}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  createInventory:
+    handler: inventoryHandler.inventory
+    memorySize: 128
+    description: create new Inventory in a site
+    events:
+     - http:
+        path: inventory/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: inventory/update/{sku}
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: inventory/read/{sku}
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: inventory/delete/{sku}
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  createOrder:
+    handler: orderHandler.order
+    memorySize: 128
+    description: create new order in a site
+    events:
+     - http:
+        path: order/create
+        method: post
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: order/update/{orderNo}/{itemNo}/
+        method: put
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: order/read/{orderNo}/{itemNo}/
+        method: get
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+     - http:
+        path: order/delete/{orderNo}/{itemNo}/
+        method: delete
+        cors: 
+          origin: '*'
+          headers: 
+            - Content-Type
+            - userName
+            - password
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent
+          allowCredentials: true
+        integration: lambda
+  scheduler:
+    handler: orderService.schduleServices
+    memorySize: 128
+    description: Scheduler service
+    events:
+     - http:
+        path: scheduler
+        method: get
+        
+
